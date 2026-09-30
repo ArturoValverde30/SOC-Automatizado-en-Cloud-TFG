@@ -80,7 +80,6 @@ flowchart LR
     class J,K,L,M,N response
 ```
 ```
-```
 Flujo IPs (alertas externas):
 Wazuh → Shuffle → [MISP + VT + AbuseIPDB] → Scoring Engine → TheHive → Velociraptor
 
