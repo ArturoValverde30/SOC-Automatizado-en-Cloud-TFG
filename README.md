@@ -26,61 +26,6 @@ Este proyecto implementa un SOC completo orientado a PYMEs, con capacidades de:
 
 ## Arquitectura
 
-```mermaid
-flowchart LR
-    subgraph EP[" 🖥️ Endpoints "]
-        direction TB
-        A["Linux Endpoint<br/><i>Suricata · Auditd · FIM</i>"]
-        B["Windows Endpoint<br/><i>Sysmon</i>"]
-    end
-
-    subgraph CORE[" 🛡️ Detection Core "]
-        direction TB
-        C["Wazuh Manager<br/><i>SIEM / EDR</i>"]
-        D["Shuffle<br/><i>SOAR Orchestration</i>"]
-    end
-
-    subgraph CTI[" 🌐 Threat Intelligence "]
-        direction TB
-        F["MISP"]
-        G["VirusTotal"]
-        H["AbuseIPDB"]
-        I["⚙️ Scoring Engine"]
-    end
-
-    subgraph RESP[" ⚡ Case Mgmt & Response "]
-        direction TB
-        J["TheHive<br/><i>Case Management</i>"]
-        K["MISP Watchlist<br/><i>adaptive learning</i>"]
-        L["Velociraptor<br/><i>DFIR Hunt</i>"]
-        M["Azure NSG<br/><i>Auto-Isolation</i>"]
-        N["🤖 LLM Case Summary<br/><i>async, non-blocking</i>"]
-    end
-
-    A -->|agent| C
-    B -->|agent| C
-    C -->|webhook| D
-    D --> F & G & H
-    F & G & H --> I
-    I -->|"score >= 40"| J
-    I -->|"score < 40"| K
-    K -.->|"reputation confirmed on repeat offense"| I
-    J --> L
-    J -->|"critical rule: ransomware / C2 / LSASS"| M
-    J --> N
-
-    classDef endpoint fill:#e8f0fe,stroke:#4285f4,stroke-width:1.5px,color:#1a1a1a
-    classDef core fill:#fef7e0,stroke:#f9ab00,stroke-width:1.5px,color:#1a1a1a
-    classDef cti fill:#e6f4ea,stroke:#34a853,stroke-width:1.5px,color:#1a1a1a
-    classDef response fill:#fce8e6,stroke:#ea4335,stroke-width:1.5px,color:#1a1a1a
-    classDef scoring fill:#f3e8fd,stroke:#a142f4,stroke-width:1.5px,color:#1a1a1a
-
-    class A,B endpoint
-    class C,D core
-    class F,G,H cti
-    class I scoring
-    class J,K,L,M,N response
-```
 ```
 Flujo IPs (alertas externas):
 Wazuh → Shuffle → [MISP + VT + AbuseIPDB] → Scoring Engine → TheHive → Velociraptor
