@@ -23,27 +23,61 @@ Este proyecto implementa un SOC completo orientado a PYMEs, con capacidades de:
 ---
 
 ## Arquitectura
-```mermaid
-flowchart TB
-    subgraph Endpoints
-        A[Linux Endpoint<br/>Suricata + Auditd + FIM]
-        B[Windows Endpoint<br/>Sysmon]
+``````mermaid
+flowchart LR
+    subgraph EP[" 🖥️ Endpoints "]
+        direction TB
+        A["Linux Endpoint<br/><i>Suricata · Auditd · FIM</i>"]
+        B["Windows Endpoint<br/><i>Sysmon</i>"]
     end
 
-    A -->|wazuh-agent| C[Wazuh Manager]
-    B -->|wazuh-agent| C
+    subgraph CORE[" 🛡️ Detection Core "]
+        direction TB
+        C["Wazuh Manager<br/><i>SIEM / EDR</i>"]
+        D["Shuffle<br/><i>SOAR Orchestration</i>"]
+    end
 
-    C -->|webhook| D[Shuffle SOAR]
-    D --> E{Enrichment<br/>parallel}
-    E --> F[MISP]
-    E --> G[VirusTotal]
-    E --> H[AbuseIPDB]
-    F & G & H --> I[Scoring Engine]
-    I -->|score >= 40| J[TheHive Case]
-    I -->|score < 40| K[MISP Watchlist<br/>adaptive]
-    J --> L[Velociraptor Hunt]
-    J -->|critical rule| M[Azure NSG<br/>Auto-Isolation]
-    J --> N[Async LLM<br/>Case Summary]
+    subgraph CTI[" 🌐 Threat Intelligence "]
+        direction TB
+        F["MISP"]
+        G["VirusTotal"]
+        H["AbuseIPDB"]
+        I["⚙️ Scoring Engine"]
+    end
+
+    subgraph RESP[" ⚡ Case Mgmt & Response "]
+        direction TB
+        J["TheHive<br/><i>Case Management</i>"]
+        K["MISP Watchlist<br/><i>adaptive learning</i>"]
+        L["Velociraptor<br/><i>DFIR Hunt</i>"]
+        M["Azure NSG<br/><i>Auto-Isolation</i>"]
+        N["🤖 LLM Case Summary<br/><i>async, non-blocking</i>"]
+    end
+
+    A -->|agent| C
+    B -->|agent| C
+    C -->|webhook| D
+    D --> F & G & H
+    F & G & H --> I
+    I -->|"score ≥ 40"| J
+    I -->|"score < 40"| K
+    K -.->|"reputation confirmed<br/>on repeat offense"| I
+    J --> L
+    J -->|"critical rule<br/>ransomware / C2 / LSASS"| M
+    J --> N
+
+    classDef endpoint fill:#e8f0fe,stroke:#4285f4,stroke-width:1.5px,color:#1a1a1a
+    classDef core fill:#fef7e0,stroke:#f9ab00,stroke-width:1.5px,color:#1a1a1a
+    classDef cti fill:#e6f4ea,stroke:#34a853,stroke-width:1.5px,color:#1a1a1a
+    classDef response fill:#fce8e6,stroke:#ea4335,stroke-width:1.5px,color:#1a1a1a
+    classDef scoring fill:#f3e8fd,stroke:#a142f4,stroke-width:1.5px,color:#1a1a1a
+
+    class A,B endpoint
+    class C,D core
+    class F,G,H cti
+    class I scoring
+    class J,K,L,M,N response
+```
 ```
 ```
 Flujo IPs (alertas externas):
