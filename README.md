@@ -22,9 +22,11 @@ Este proyecto implementa un SOC completo orientado a PYMEs, con capacidades de:
 
 ---
 
+````markdown
+
 ## Arquitectura
-```
-mermaid
+
+```mermaid
 flowchart LR
     subgraph EP[" 🖥️ Endpoints "]
         direction TB
@@ -60,11 +62,11 @@ flowchart LR
     C -->|webhook| D
     D --> F & G & H
     F & G & H --> I
-    I -->|"score ≥ 40"| J
+    I -->|"score >= 40"| J
     I -->|"score < 40"| K
-    K -.->|"reputation confirmed<br/>on repeat offense"| I
+    K -.->|"reputation confirmed on repeat offense"| I
     J --> L
-    J -->|"critical rule<br/>ransomware / C2 / LSASS"| M
+    J -->|"critical rule: ransomware / C2 / LSASS"| M
     J --> N
 
     classDef endpoint fill:#e8f0fe,stroke:#4285f4,stroke-width:1.5px,color:#1a1a1a
