@@ -23,7 +23,8 @@ Este proyecto implementa un SOC completo orientado a PYMEs, con capacidades de:
 ---
 
 ## Arquitectura
-``````mermaid
+```
+mermaid
 flowchart LR
     subgraph EP[" 🖥️ Endpoints "]
         direction TB
