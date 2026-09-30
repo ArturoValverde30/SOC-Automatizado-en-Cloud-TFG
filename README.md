@@ -22,7 +22,7 @@ Este proyecto implementa un SOC completo orientado a PYMEs, con capacidades de:
 
 ---
 
-````markdown
+
 
 ## Arquitectura
 
