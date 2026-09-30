@@ -23,7 +23,28 @@ Este proyecto implementa un SOC completo orientado a PYMEs, con capacidades de:
 ---
 
 ## Arquitectura
+```mermaid
+flowchart TB
+    subgraph Endpoints
+        A[Linux Endpoint<br/>Suricata + Auditd + FIM]
+        B[Windows Endpoint<br/>Sysmon]
+    end
 
+    A -->|wazuh-agent| C[Wazuh Manager]
+    B -->|wazuh-agent| C
+
+    C -->|webhook| D[Shuffle SOAR]
+    D --> E{Enrichment<br/>parallel}
+    E --> F[MISP]
+    E --> G[VirusTotal]
+    E --> H[AbuseIPDB]
+    F & G & H --> I[Scoring Engine]
+    I -->|score >= 40| J[TheHive Case]
+    I -->|score < 40| K[MISP Watchlist<br/>adaptive]
+    J --> L[Velociraptor Hunt]
+    J -->|critical rule| M[Azure NSG<br/>Auto-Isolation]
+    J --> N[Async LLM<br/>Case Summary]
+```
 ```
 Flujo IPs (alertas externas):
 Wazuh → Shuffle → [MISP + VT + AbuseIPDB] → Scoring Engine → TheHive → Velociraptor
