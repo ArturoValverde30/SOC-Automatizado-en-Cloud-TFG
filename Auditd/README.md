@@ -20,4 +20,4 @@ Monitorización de integridad de ficheros en tiempo real en ambos endpoints:
   de Shuffle, TheHive) para reducir ruido durante el desarrollo — no aplicado
   a rutas relevantes en producción.
 
-[← Volver al README principal](../../README.md)
+[← Volver al README principal](../README.md)
