@@ -69,3 +69,6 @@ Para que el mismo mecanismo dispare ante ransomware (T1486) o C2
   <rules_id>100006,100007,100610</rules_id>
 </active-response>
 ```
+
+[← Volver al README principal](../README.md)
+
