@@ -63,4 +63,4 @@ Las reglas priorizan detección por comportamiento sobre matching de IoCs — ve
   contra el procesamiento real de eventos Sysmon — los valores teóricos de la
   documentación de Wazuh no coincidían en la práctica.
 
-[← Volver al README principal](../../README.md)
+[← Volver al README principal](../README.md)
