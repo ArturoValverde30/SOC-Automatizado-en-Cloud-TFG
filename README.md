@@ -244,16 +244,6 @@ token de la API de Azure en tiempo real, sin secretos almacenados.
 | 100505 | T1003 | Sysmon — Mimikatz por nombre de proceso |
 
 ---
-## Estructura del repositorio
-
-| Carpeta | Descripción |
-|---|---|
-| [`detection-rules/wazuh/`](detection-rules/wazuh/README.md) | 31 reglas custom, mapeo completo a MITRE |
-| [`soar-workflows/shuffle/`](soar-workflows/shuffle/README.md) | Pipelines de enrichment, scoring engine, watchlist |
-| [`response-scripts/`](response-scripts/README.md) | Arquitectura de aislamiento automatizado |
-| [`config/`](config/README.md) | Referencias de configuración Auditd + FIM |
-| `docs/` | Capturas, resultados extendidos |
----
 
 ## Decisiones de Diseño Clave
 
