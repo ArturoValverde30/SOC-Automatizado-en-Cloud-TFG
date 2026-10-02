@@ -201,4 +201,4 @@ md5sum /var/ossec/etc/shared/kill-attacker.sh   # puede estar desactualizado
   como decisión manual del analista (`block-candidate`) por el riesgo
   de falso positivo sobre IPs compartidas/NAT.
 
-  
+  [← Volver al README principal](../README.md)
