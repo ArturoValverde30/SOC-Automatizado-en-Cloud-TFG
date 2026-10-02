@@ -49,7 +49,6 @@ necesidad de ajuste manual.
 ## Trigger de aislamiento automático
 
 Las reglas `100006` (ransomware), `100007` (C2) y `100501` (acceso LSASS)
-disparan una llamada HTTP al webhook de aislamiento — ver
-[`active-response/README.md`](active-response/README.md).
+disparan una llamada HTTP al webhook de aislamiento 
 
 [← Volver al README principal](../../README.md)
