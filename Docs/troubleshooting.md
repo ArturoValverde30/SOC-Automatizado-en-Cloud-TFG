@@ -61,3 +61,5 @@ frente a un entorno productivo con continuidad garantizada.
 Wazuh exige un mínimo de 2.
 **Fix**: validación con `python3 ET.parse()` antes de todo restart
 de wazuh-manager como práctica de control de cambios.
+
+[← Volver al README principal](../README.md)
