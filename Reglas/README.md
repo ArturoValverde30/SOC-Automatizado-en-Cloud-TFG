@@ -1,7 +1,7 @@
 # Reglas de Detección Custom — Wazuh
 
 31 reglas personalizadas mapeadas a MITRE ATT&CK, cubriendo endpoints Linux y Windows.
-Las reglas priorizan detección por comportamiento sobre matching de IoCs — ver [justificación](../../README.md#documented-limitations).
+Las reglas priorizan detección por comportamiento sobre matching de IoCs.
 
 ## Resumen de cobertura
 
