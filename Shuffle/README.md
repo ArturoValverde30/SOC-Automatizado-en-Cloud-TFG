@@ -51,4 +51,4 @@ necesidad de ajuste manual.
 Las reglas `100006` (ransomware), `100007` (C2) y `100501` (acceso LSASS)
 disparan una llamada HTTP al webhook de aislamiento 
 
-[← Volver al README principal](../../README.md)
+[← Volver al README principal](../README.md)
